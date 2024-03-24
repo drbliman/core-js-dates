@@ -218,6 +218,27 @@ function getCountWeekendsInMonth(month, year) {
  */
 function getWeekNumberByDate(/* date */) {
   throw new Error('Not implemented');
+  // const date0 = date;
+  // const month = date0.getUTCMonth();
+  // const day = date0.getUTCDate();
+  // const year = date0.getUTCFullYear();
+  // let week = 1;
+  // for (let i = 0; i <= month; i += 1) {
+  //   const daysInMonth = new Date(year, i + 1, 0).getDate();
+  //   for (let j = 1; j <= daysInMonth; j += 1) {
+  //     const newDate = new Date(year, i, j);
+  //     if (newDate.getDay() === 1) {
+  //       week += 1;
+  //       if (i === 0 && j === 1) {
+  //         week -= 1;
+  //       }
+  //     }
+  //     if (i === month && j === day) {
+  //       break;
+  //     }
+  //   }
+  // }
+  // return week;
 }
 
 /**
@@ -231,8 +252,25 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const newData = new Date(date);
+  let month = newData.getUTCMonth();
+  const day = 13;
+  let year = newData.getUTCFullYear();
+  let checkData = null;
+  for (let i = 0; i < 100; i += 1) {
+    if (month === 11) {
+      month = 0;
+      year += 1;
+    } else {
+      month += 1;
+    }
+    checkData = new Date(year, month, day);
+    if (checkData.getDay() === 5) {
+      break;
+    }
+  }
+  return checkData;
 }
 
 /**
